@@ -2,8 +2,10 @@
 
 using System.Diagnostics.Metrics;
 using Sandelys;
+using Sandelys.Containers;
 using Sandelys.Distances;
 
 Console.WriteLine("Hello, World!");
-var sandelis = new WareHouse(Distance.ConvertMetersToCm(50), Distance.ConvertMetersToCm(25));
+new Area();
+
 

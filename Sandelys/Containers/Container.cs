@@ -31,7 +31,6 @@ public class Container
 
 public class Big : Container
 {
-    
     public Big() : base(200, 200, 200) { }
 }
 
@@ -43,5 +42,11 @@ public class Medium : Container
 public class Small : Container
 {
     public Small() : base(100, 100, 100)
+    { }
+}
+
+public class L : Container
+{
+    public L() : base(200, 150, 150)
     { }
 }

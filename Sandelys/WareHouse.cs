@@ -21,8 +21,6 @@ public class WareHouse
         _width = width;
         _length = length;
         LinesSetUp();
-        
-        AtvaziavoSiuntos();
     }
 
     void LinesSetUp()
@@ -36,48 +34,22 @@ public class WareHouse
         }
     }
 
-    public void AtvaziavoSiuntos() //Toks TEST metodas....
+    public bool AddIfFreeSpaceExists(Container cont)
     {
-        var atvezta = new List<Container>();
-        for (int i = 0; i < 299; i++)
-        {
-            atvezta.Add(new Big());
-            atvezta.Add(new Small());
-            atvezta.Add(new Medium());
-        }
-        
-        atvezta.Sort((cont1, cont2) => cont2.GetV().CompareTo(cont1.GetV())); //Rušiavims pagal tūrį;
-        
-        foreach (var konteineris in atvezta)
-        {
-            if (!AddIfFreeSpaceExists(konteineris))
-            {
-                Console.WriteLine("Sandelyje nebera vietos...");
-                break;
-            }
-        }
-
-        for (int i = 1; i <= _lines.Count; i++)
-        {
-            Console.WriteLine(i+" Eileje laisvos vietos: "+_lines[i-1].GetFreeSpace()+"; Siuntu kiekis - "+_lines[i-1].GetContainerCount());
-        }
-
+        return _lines.Any(line => line.TryAddToLine(cont));
     }
 
-    private bool AddIfFreeSpaceExists(Container cont)
+
+    public void PrintLinesInfo()
     {
+        int lineIndex = 0;
         foreach (var line in _lines)
         {
-            if (line.TryAddToLine(cont))
-            {
-                Console.WriteLine("PRIDETAS: "+cont.GetV());
-                return true;
-            }
-            Console.WriteLine("NEPRIDETA, bandoma eiti i kita eile...");
+            lineIndex++;
+            Console.WriteLine(lineIndex+" Eileje laisvos vietos: "+line.GetFreeSpace()+"; Siuntu kiekis - "+line.GetContainerCount());
         }
-        return false;
+        Console.WriteLine("-------------");
     }
-    
     
     /// <summary>
     /// MATMENYS TURI BŪTI PATEIKTI CENTRIMETRAIISSS
